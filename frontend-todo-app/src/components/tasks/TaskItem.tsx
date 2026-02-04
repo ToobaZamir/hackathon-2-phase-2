@@ -38,7 +38,10 @@ export default function TaskItem({ todo, onUpdate }: TaskItemProps) {
   };
 
   const handleSaveEdit = async () => {
-    if (!editTitle.trim()) return;
+    if (!editTitle.trim()) {
+      alert('Title is required');
+      return;
+    }
 
     setIsUpdating(true);
     try {
@@ -53,6 +56,7 @@ export default function TaskItem({ todo, onUpdate }: TaskItemProps) {
       setIsEditing(false);
     } catch (error) {
       console.error('Error updating task:', error);
+      alert('Failed to update task. Please try again.');
     } finally {
       setIsUpdating(false);
     }
