@@ -133,12 +133,16 @@ def update_task(
     Update a specific task by ID for the authenticated user
     """
     try:
-        # Create update model from request
-        task_update_model = TaskUpdate(
-            title=task_update.title,
-            description=task_update.description,
-            completed=task_update.completed
-        )
+        # Create update model from request, only including fields that are not None
+        update_data = {}
+        if task_update.title is not None:
+            update_data['title'] = task_update.title
+        if task_update.description is not None:
+            update_data['description'] = task_update.description
+        if task_update.completed is not None:
+            update_data['completed'] = task_update.completed
+
+        task_update_model = TaskUpdate(**update_data)
 
         updated_task = TaskService.update_task(session, id, current_user.id, task_update_model)
 
