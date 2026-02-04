@@ -47,6 +47,7 @@ const TaskEditForm: React.FC<TaskEditFormProps> = ({ task, onCancel, onSuccess }
       await updateTask(task.id, {
         title: data.title,
         description: data.description || undefined,
+        completed: task.completed, // Preserve the current completion status
       });
       reset(); // Clear the form after successful update
       onSuccess(); // Notify parent component of success
