@@ -52,6 +52,7 @@ const TaskEditForm: React.FC<TaskEditFormProps> = ({ task, onCancel, onSuccess }
       onSuccess(); // Notify parent component of success
     } catch (error) {
       console.error('Error updating task:', error);
+      alert('Failed to update task. Please try again.');
     }
   };
 
