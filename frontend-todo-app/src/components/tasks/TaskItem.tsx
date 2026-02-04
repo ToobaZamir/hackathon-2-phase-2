@@ -47,8 +47,8 @@ export default function TaskItem({ todo, onUpdate }: TaskItemProps) {
 
     setIsUpdating(true);
     try {
-      // Only send fields that are actually being updated
-      const updateData: any = {
+      // Prepare update data with only the fields that are being updated
+      const updateData: Partial<UpdateTaskData> = {
         title: editTitle,
       };
 
@@ -57,7 +57,7 @@ export default function TaskItem({ todo, onUpdate }: TaskItemProps) {
         updateData.description = editDescription || undefined;
       }
 
-      const updatedTask = await taskService.updateTask(todo.id, updateData);
+      const updatedTask = await taskService.updateTask(todo.id, updateData as UpdateTaskData);
 
       // Update the parent state with the new task data
       onUpdate(prevTasks =>
