@@ -56,6 +56,7 @@ export default function TaskCreateForm({ onTaskCreated }: TaskCreateFormProps) {
       reset(); // Clear the form after successful creation
     } catch (error) {
       console.error('Error creating task:', error);
+      alert('Failed to create task. Please try again.');
     } finally {
       setLoading(false);
     }
