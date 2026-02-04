@@ -23,6 +23,7 @@ export default function TaskItem({ todo, onUpdate }: TaskItemProps) {
       );
     } catch (error) {
       console.error('Error toggling task completion:', error);
+      alert('Failed to update task completion status. Please try again.');
     }
   };
 
